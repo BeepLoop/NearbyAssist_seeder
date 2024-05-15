@@ -170,7 +170,7 @@ func (m *Mysql) InsertServiceTag(serviceTag *request.ServiceTagModel) (int, erro
 
 	query := `
         INSERT INTO 
-            ServiceTag (serviceId, tagId)
+            Service_Tag (serviceId, tagId)
         VALUES
             (
                 :serviceId,
