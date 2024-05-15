@@ -1,0 +1,107 @@
+{
+    "data": [
+        {
+            "table": "tag",
+            "tableData": [
+                {
+                    "title": "electric"
+                },
+                {
+                    "title": "plumbing"
+                },
+                {
+                    "title": "carpentry"
+                }
+            ]
+        },
+        {
+            "table": "admin",
+            "tableData": [
+                {
+                    "username": "admin",
+                    "password": "admin",
+                    "role": "admin"
+                }
+            ]
+        },
+        {
+            "table": "user",
+            "tableData": [
+                {
+                    "name": "John Loyd Mulit",
+                    "email": "jlmulit68@gmail.com",
+                    "imageUrl": "https://i.pravatar.cc/100"
+                },
+                {
+                    "name": "Adrian Juntilla",
+                    "email": "ajuntilla@gmail.com",
+                    "imageUrl": "https://i.pravatar.cc/100"
+                }
+            ]
+        },
+        {
+            "table": "vendor",
+            "tableData": [
+                {
+                    "name": "John Loyd Mulit",
+                    "job": "electrician"
+                }
+            ]
+        },
+        {
+            "table": "service",
+            "tableData": [
+                {
+                    "vendorId": 1,
+                    "description": "We offer computer repair and maintenance services.",
+                    "rate": "100",
+                    "tags": [
+                        {
+                            "title": "computer repair"
+                        },
+                        {
+                            "title": "electric"
+                        }
+                    ],
+                    "latitude": 7.422302,
+                    "longitude": 125.824747
+                },
+                {
+                    "vendorId": 1,
+                    "description": "We offer computer plumbing services.",
+                    "rate": "150",
+                    "tags": [
+                        {
+                            "title": "plumbing"
+                        }
+                    ],
+                    "latitude": 7.422302,
+                    "longitude": 125.824747
+                }
+            ]
+        },
+        {
+            "table": "review",
+            "tableData": [
+                {
+                    "serviceId": 1,
+                    "rating": 5
+                },
+                {
+                    "serviceId": 1,
+                    "rating": 4
+                }
+            ]
+        },
+        {
+            "table": "servicePhoto",
+            "tableData": [
+                {
+                    "serviceId": 1,
+                    "vendorId": 1,
+                    "url": "https://i.pravatar.cc/100"
+                }
+            ]
+        }
+    ]
+}
