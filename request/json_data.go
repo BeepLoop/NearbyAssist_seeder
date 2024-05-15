@@ -1,8 +1,10 @@
 package request
 
+import "encoding/json"
+
 type JsonDataEntry struct {
-	Table     string        `json:"table"`
-	TableData []interface{} `json:"tableData"`
+	Table     string            `json:"table"`
+	TableData []json.RawMessage `json:"tableData"`
 }
 
 type JsonData struct {
