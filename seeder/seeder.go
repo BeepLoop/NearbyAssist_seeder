@@ -2,7 +2,6 @@ package seeder
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 
 	"github.com/BeepLoop/nearbyassist_seeder/config"
@@ -39,8 +38,10 @@ func (s *Seeder) Seed() error {
 					break
 				}
 
-				// Do something about req
-				fmt.Println(req)
+				if _, err := s.Db.InsertTag(req); err != nil {
+					someErr = err
+					break
+				}
 			}
 		case "admin":
 			for _, admin := range entry.TableData {
@@ -50,8 +51,10 @@ func (s *Seeder) Seed() error {
 					break
 				}
 
-				// Do something about req
-				fmt.Println(req)
+				if _, err := s.Db.InsertAdmin(req); err != nil {
+					someErr = err
+					break
+				}
 			}
 		case "user":
 			for _, user := range entry.TableData {
@@ -61,8 +64,10 @@ func (s *Seeder) Seed() error {
 					break
 				}
 
-				// Do something about req
-				fmt.Println(req)
+				if _, err := s.Db.InsertUser(req); err != nil {
+					someErr = err
+					break
+				}
 			}
 		case "vendor":
 			for _, vendor := range entry.TableData {
@@ -72,10 +77,13 @@ func (s *Seeder) Seed() error {
 					break
 				}
 
-				// Do something about req
-				fmt.Println(req)
+				if _, err := s.Db.InsertVendor(req); err != nil {
+					someErr = err
+					break
+				}
 			}
 		case "service":
+			services := make([]*request.ServiceModel, 0)
 			for _, service := range entry.TableData {
 				req := &request.ServiceModel{}
 				if err := s.JsonRawToStruct(service, req); err != nil {
@@ -83,8 +91,26 @@ func (s *Seeder) Seed() error {
 					break
 				}
 
-				// Do something about req
-				fmt.Println(req)
+				services = append(services, req)
+			}
+
+			for _, service := range services {
+				id, err := s.Db.InsertService(service)
+				if err != nil {
+					someErr = err
+					break
+				}
+
+				for _, tag := range service.Tags {
+					svcTag := &request.ServiceTagModel{
+						ServiceId: id,
+						TagTitle:  tag.Title,
+					}
+					if _, err := s.Db.InsertServiceTag(svcTag); err != nil {
+						someErr = err
+						break
+					}
+				}
 			}
 		case "review":
 			for _, review := range entry.TableData {
@@ -94,8 +120,10 @@ func (s *Seeder) Seed() error {
 					break
 				}
 
-				// Do something about req
-				fmt.Println(req)
+				if _, err := s.Db.InsertReview(req); err != nil {
+					someErr = err
+					break
+				}
 			}
 		case "servicePhoto":
 			for _, servicePhoto := range entry.TableData {
@@ -105,8 +133,10 @@ func (s *Seeder) Seed() error {
 					break
 				}
 
-				// Do something about req
-				fmt.Println(req)
+				if _, err := s.Db.InsertServicePhoto(req); err != nil {
+					someErr = err
+					break
+				}
 			}
 		default:
 			println("unsupported table")
