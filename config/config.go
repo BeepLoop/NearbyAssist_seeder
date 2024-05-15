@@ -29,3 +29,11 @@ func (c *Config) LoadConfigFromEnv() error {
 
 	return nil
 }
+
+func (c *Config) LoadConfigWithValues(user, pass, db, host, port string) {
+	c.DB_User = user
+	c.DB_Pass = pass
+	c.DB_Name = db
+	c.DB_Host = host
+	c.DB_Port = port
+}
