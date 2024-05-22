@@ -10,8 +10,12 @@ import (
 	"github.com/BeepLoop/nearbyassist_seeder/seeder"
 )
 
+const (
+	IS_HEADLESS = true
+)
+
 func main() {
-	headless := flag.Bool("headless", false, "Run without GUI")
+	headless := flag.Bool("headless", IS_HEADLESS, "Run without GUI. Defaults to true")
 	flag.Parse()
 
 	if *headless {
