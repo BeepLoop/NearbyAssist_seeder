@@ -34,9 +34,11 @@ func main() {
 		// Load Seeder backend
 		seeder := seeder.NewSeeder(conf, db)
 		if err := seeder.Seed(); err != nil {
-			panic("Failed to seed, error: " + err.Error())
+			fmt.Println("Failed to seed data, error: " + err.Error())
+			os.Exit(1)
 		}
 
+		fmt.Println("Data seeded successfully!")
 		os.Exit(0)
 	}
 }
