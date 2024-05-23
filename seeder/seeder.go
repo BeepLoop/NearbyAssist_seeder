@@ -7,6 +7,7 @@ import (
 	"github.com/BeepLoop/nearbyassist_seeder/config"
 	"github.com/BeepLoop/nearbyassist_seeder/database"
 	"github.com/BeepLoop/nearbyassist_seeder/request"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type Seeder struct {
@@ -50,6 +51,14 @@ func (s *Seeder) Seed() error {
 					someErr = err
 					break
 				}
+
+                hash, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+                if err != nil {
+                    someErr = err
+                    break;
+                } else {
+                    req.Password = string(hash)
+                }
 
 				if _, err := s.Db.InsertAdmin(req); err != nil {
 					someErr = err
