@@ -52,13 +52,13 @@ func (s *Seeder) Seed() error {
 					break
 				}
 
-                hash, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
-                if err != nil {
-                    someErr = err
-                    break;
-                } else {
-                    req.Password = string(hash)
-                }
+				hash, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+				if err != nil {
+					someErr = err
+					break
+				} else {
+					req.Password = string(hash)
+				}
 
 				if _, err := s.Db.InsertAdmin(req); err != nil {
 					someErr = err

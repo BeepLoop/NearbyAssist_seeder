@@ -140,7 +140,13 @@ func (m *Mysql) InsertService(service *request.ServiceModel) (int, error) {
                 (vendorId, description, rate, latitude, longitude)
         VALUES 
             (
-                :vendorId,
+                (
+                    SELECT 
+                        v.vendorId
+                    FROM
+                        Vendor v
+                        JOIN User u on u.name = :name
+                ),
                 :description,
                 :rate,
                 :latitude,
@@ -149,6 +155,7 @@ func (m *Mysql) InsertService(service *request.ServiceModel) (int, error) {
     `
 	res, err := m.Conn.NamedExecContext(ctx, query, service)
 	if err != nil {
+		fmt.Println("Error inserting service: ", err)
 		return 0, err
 	}
 
@@ -170,7 +177,7 @@ func (m *Mysql) InsertServiceTag(serviceTag *request.ServiceTagModel) (int, erro
 
 	query := `
         INSERT INTO 
-            Service_Tag (serviceId, tagId)
+            ServiceTag (serviceId, tagId)
         VALUES
             (
                 :serviceId,

@@ -1,7 +1,8 @@
 package request
 
 type ServiceModel struct {
-	VendorId    int        `db:"vendorId"`
+	// VendorId    int        `db:"vendorId"`
+	Name        string     `db:"name"`
 	Description string     `db:"description"`
 	Rate        string     `db:"rate"`
 	Tags        []TagModel `db:"tags"`
