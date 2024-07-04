@@ -46,7 +46,7 @@
             "table": "vendor",
             "tableData": [
                 {
-                    "name": "John Loyd Mulit",
+                    "email": "jlmulit68@gmail.com",
                     "job": "electrician"
                 }
             ]
@@ -55,7 +55,7 @@
             "table": "service",
             "tableData": [
                 {
-                    "vendorId": 1,
+                    "vendor": "jlmulit68@gmail.com",
                     "description": "We offer computer repair and maintenance services.",
                     "rate": "100",
                     "tags": [
@@ -67,10 +67,26 @@
                         }
                     ],
                     "latitude": 7.422302,
-                    "longitude": 125.824747
+                    "longitude": 125.824747,
+                    "images": [
+                        {
+                            "url": "https://i.pravatar.cc/100"
+                        },
+                        {
+                            "url": "https://i.pravatar.cc/100"
+                        }
+                    ],
+                    "reviews": [
+                        {
+                            "rating": 5
+                        },
+                        {
+                            "rating": 4
+                        }
+                    ]
                 },
                 {
-                    "vendorId": 1,
+                    "vendor": "jlmulit68@gmail.com",
                     "description": "We offer computer plumbing services.",
                     "rate": "150",
                     "tags": [
@@ -79,30 +95,20 @@
                         }
                     ],
                     "latitude": 7.422302,
-                    "longitude": 125.824747
-                }
-            ]
-        },
-        {
-            "table": "review",
-            "tableData": [
-                {
-                    "serviceId": 1,
-                    "rating": 5
-                },
-                {
-                    "serviceId": 1,
-                    "rating": 4
-                }
-            ]
-        },
-        {
-            "table": "servicePhoto",
-            "tableData": [
-                {
-                    "serviceId": 1,
-                    "vendorId": 1,
-                    "url": "https://i.pravatar.cc/100"
+                    "longitude": 125.824747,
+                    "images": [
+                        {
+                            "url": "https://i.pravatar.cc/100"
+                        }
+                    ],
+                    "reviews": [
+                        {
+                            "rating": 2
+                        },
+                        {
+                            "rating": 1
+                        }
+                    ]
                 }
             ]
         }

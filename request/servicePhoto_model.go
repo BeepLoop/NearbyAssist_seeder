@@ -1,7 +1,7 @@
 package request
 
 type ServicePhotoModel struct {
-	VendorId  int    `db:"vendorId"`
-	ServiceId int    `db:"serviceId"`
-	Url       string `db:"url"`
+	Vendor    string `json:"vendor" db:"vendor"`
+	ServiceId int    `json:"serviceId" db:"serviceId"`
+	Url       string `json:"url" db:"url"`
 }

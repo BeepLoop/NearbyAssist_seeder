@@ -60,7 +60,7 @@ func (m *Mysql) InsertAdmin(admin *request.AdminModel) (int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	query := "INSERT INTO Admin (username, password, role) VALUES (:username, :password, :role)"
+	query := "INSERT INTO Admin (username, password, role, usernameHash) VALUES (:username, :password, :role, :usernameHash)"
 	res, err := m.Conn.NamedExecContext(ctx, query, admin)
 	if err != nil {
 		return 0, err
@@ -82,7 +82,7 @@ func (m *Mysql) InsertUser(user *request.UserModel) (int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	query := "INSERT INTO User (name, email, imageUrl) VALUES (:name, :email, :imageUrl)"
+	query := "INSERT INTO User (name, email, imageUrl, emailHash) VALUES (:name, :email, :imageUrl, :emailHash)"
 	res, err := m.Conn.NamedExecContext(ctx, query, user)
 	if err != nil {
 		return 0, err
@@ -109,7 +109,7 @@ func (m *Mysql) InsertVendor(vendor *request.VendorModel) (int, error) {
             Vendor (vendorId, job)
         VALUES
             (
-                (SELECT id FROM User WHERE name = :name),
+                (SELECT id FROM User WHERE emailHash = :email),
                 :job
             )
     `
@@ -145,7 +145,7 @@ func (m *Mysql) InsertService(service *request.ServiceModel) (int, error) {
                         v.vendorId
                     FROM
                         Vendor v
-                        JOIN User u on u.name = :name
+                        JOIN User u on u.emailHash = :vendor
                 ),
                 :description,
                 :rate,
@@ -227,7 +227,21 @@ func (m *Mysql) InsertServicePhoto(photo *request.ServicePhotoModel) (int, error
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	query := "INSERT INTO ServicePhoto (vendorId, serviceId, url) VALUES (:vendorId, :serviceId, :url)"
+	query := `
+        INSERT INTO 
+            ServicePhoto (vendorId, serviceId, url) 
+        VALUES 
+            (
+                (
+                    SELECT 
+                        v.vendorId
+                    FROM
+                        Vendor v
+                        JOIN User u on u.emailHash = :vendor
+                ),
+                :serviceId,
+                :url
+            )`
 	res, err := m.Conn.NamedExecContext(ctx, query, photo)
 	if err != nil {
 		return 0, err

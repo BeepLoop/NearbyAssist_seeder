@@ -1,6 +1,6 @@
 package request
 
 type VendorModel struct {
-	Name string `db:"name"`
-	Job  string `db:"job"`
+	Email string `json:"email" db:"email"`
+	Job   string `json:"job" db:"job"`
 }

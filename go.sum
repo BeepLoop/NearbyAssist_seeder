@@ -1,5 +1,7 @@
 filippo.io/edwards25519 v1.1.0 h1:FNf4tywRC1HmFuKW5xopWpigGjJKiJSV0Cqo0cJWDaA=
 filippo.io/edwards25519 v1.1.0/go.mod h1:BxyFTGdWcka3PhytdK4V28tE5sGfRvvvRV7EaN4VDT4=
+github.com/beeploop/aes-encrypt v0.0.0-20240701090236-12736e6ab326 h1:AuxWMS6y44H7mxOJlHTkKZ1GPy6jH0NXX/9kCSap7gQ=
+github.com/beeploop/aes-encrypt v0.0.0-20240701090236-12736e6ab326/go.mod h1:fQUjKSTYQvwIu9tVHBMXJ3ZJbGtMlHbYRn51bZmAuoQ=
 github.com/go-sql-driver/mysql v1.8.1 h1:LedoTUt/eveggdHS9qUFC1EFSa8bU2+1pZjSRpvNJ1Y=
 github.com/go-sql-driver/mysql v1.8.1/go.mod h1:wEBSXgmK//2ZFJyE+qWnIsVGmvmEKlqwuVSjsCm7DZg=
 github.com/jmoiron/sqlx v1.4.0 h1:1PLqN7S1UYp5t4SrVVnt4nUVNemrDAtxlulVe+Qgm3o=
